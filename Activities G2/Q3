@@ -1,0 +1,201 @@
+using System;
+
+class Student
+{
+    // Private fields
+    private int studentID;
+    private string name;
+    private int intakeYear;
+    private int english;
+    private int math;
+    private int chemistry;
+    private int biology;
+    private int history;
+
+    // Default constructor
+    public Student()
+    {
+        studentID = 0;
+        name = "";
+        intakeYear = 0;
+        english = 0;
+        math = 0;
+        chemistry = 0;
+        biology = 0;
+        history = 0;
+    }
+
+    // Overloaded constructor
+    public Student(int studentID, string name, int intakeYear)
+    {
+        this.studentID = studentID;
+        this.name = name;
+        this.intakeYear = intakeYear;
+        english = 0;
+        math = 0;
+        chemistry = 0;
+        biology = 0;
+        history = 0;
+    }
+
+    // Accessor methods (getters)
+    public int GetStudentID()
+    {
+        return studentID;
+    }
+
+    public string GetName()
+    {
+        return name;
+    }
+
+    public int GetIntakeYear()
+    {
+        return intakeYear;
+    }
+
+    public int GetEnglish()
+    {
+        return english;
+    }
+
+    public int GetMath()
+    {
+        return math;
+    }
+
+    public int GetChemistry()
+    {
+        return chemistry;
+    }
+
+    public int GetBiology()
+    {
+        return biology;
+    }
+
+    public int GetHistory()
+    {
+        return history;
+    }
+
+    // Mutator methods (setters)
+    public void SetStudentID(int studentID)
+    {
+        this.studentID = studentID;
+    }
+
+    public void SetName(string name)
+    {
+        this.name = name;
+    }
+
+    public void SetIntakeYear(int intakeYear)
+    {
+        this.intakeYear = intakeYear;
+    }
+
+    public void SetEnglish(int english)
+    {
+        this.english = english;
+    }
+
+    public void SetMath(int math)
+    {
+        this.math = math;
+    }
+
+    public void SetChemistry(int chemistry)
+    {
+        this.chemistry = chemistry;
+    }
+
+    public void SetBiology(int biology)
+    {
+        this.biology = biology;
+    }
+
+    public void SetHistory(int history)
+    {
+        this.history = history;
+    }
+
+    // Method to enter marks
+    public void EnterMarks()
+    {
+        Console.WriteLine("Enter marks for English:");
+        english = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("Enter marks for Mathematics:");
+        math = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("Enter marks for Chemistry:");
+        chemistry = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("Enter marks for Biology:");
+        biology = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("Enter marks for History:");
+        history = int.Parse(Console.ReadLine());
+    }
+
+    public void DisplayGrades() 
+    {
+        Console.WriteLine("English Grade: " + GetGrade(english));
+        Console.WriteLine("Math Grade: " + GetGrade(math));
+        Console.WriteLine("Chemistry Grade: " + GetGrade(chemistry));
+        Console.WriteLine("Biology Grade: " + GetGrade(biology));
+        Console.WriteLine("History Grade: " + GetGrade(history));
+    }
+
+    //Method to calculate the average marks
+    public double CalculateAverage()
+    {
+        
+        double totalMarks = (GetEnglish() + GetMath() + GetChemistry() + GetBiology() + GetHistory());
+        double average = totalMarks / 5;
+        return average;
+    }
+
+
+    //Helper method to determine the grade based on marks
+    private string GetGrade(int marks)
+    {
+        if (marks >= 80 && marks <= 100)
+            return "A";
+        else if (marks >= 60 && marks < 80)
+            return "B";
+        else if (marks >= 50 && marks < 60)
+            return "C";
+        else if (marks >= 0 && marks < 50)
+            return "D";
+        else
+            return "The marks is out of range, please enter '0' to '100' only";
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Student student = new Student();
+
+        Console.WriteLine("Enter student details:");
+        Console.Write("Student ID: ");
+        string SetStudentID = Console.ReadLine();
+        Console.Write("Name: ");
+        student.SetName(Console.ReadLine());
+        Console.Write("Intake Year: ");
+        student.SetIntakeYear(int.Parse(Console.ReadLine()));
+        student.EnterMarks();
+        Console.WriteLine("\nStudent Details:");
+        Console.WriteLine("Student ID:" + SetStudentID);
+        Console.WriteLine($"Name: {student.GetName()}");
+        Console.WriteLine($"Intake Year: {student.GetIntakeYear()}");
+        //grades A B C D
+        Console.WriteLine("\nGrades for Student:");
+        student.DisplayGrades();
+        //Average Marks
+        Console.WriteLine("\nAverage marks for Student: " + student.CalculateAverage());
+    }
+}
