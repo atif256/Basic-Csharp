@@ -1,0 +1,75 @@
+using System;
+
+class Program // Answer for Q2
+    {
+        static void Main(string[] args)
+        {
+            int[] arr1 = new int[] { 23, 11, 15, 8, 200, 7, 88, 65 };
+            int[] arr2 = new int[8];
+
+            for (int i = 0; i < arr2.Length; i++)
+            {
+                Console.Write($"Enter value {i + 1}: ");
+                if (int.TryParse(Console.ReadLine(), out int value))
+                {
+                    arr2[i] = value;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid integer.");
+                    i--; // Retry input for the same index
+                }
+
+            }
+            Console.WriteLine("\nArray 2:");
+            foreach (var v in arr2)
+            {
+                Console.Write(v + " ");
+            }
+            Console.WriteLine();
+
+            Console.WriteLine("\narr1 = {23, 11, 15, 8, 200, 7, 88, 65}:");
+            for (int i = arr1.Length - 1; i >= 0; i--)
+            {
+                
+                Console.Write(arr1[i] + " ");
+            }
+            Console.WriteLine();
+
+            int evenCount = 0;
+            foreach (int value in arr2)
+            {
+                if (isEven(value))
+                {
+                    evenCount++;
+                }
+            }
+            Console.WriteLine($"\nNumber of even elements in arr2: {evenCount}");
+
+            bool AreArraysEqual = CompareArr(arr1, arr2);
+            Console.WriteLine("\nAre arr1 and arr2 the same? " + (AreArraysEqual ? "Yes" : "No"));
+        }
+
+        static bool isEven(int value) 
+        {
+            return value % 2 == 0;
+        }
+
+        static bool CompareArr(int[] arr1, int[] arr2)
+        {
+            if (arr1.Length != arr2.Length)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < arr1.Length; i++)
+            {
+                if (arr1[i] != arr2[i])
+                {
+                    return false; 
+                }
+            }
+
+            return true;
+        }
+    }
