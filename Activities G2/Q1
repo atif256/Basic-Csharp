@@ -1,0 +1,72 @@
+class Program // Answer for Q1
+    {
+        static void Main(string[] args)
+        {
+
+            char countrycode;
+            double time1; double time2;
+            
+                try
+                {
+                    Console.WriteLine("Please enter the country code: ");
+                    countrycode = char.Parse(Console.ReadLine());
+                    
+
+                    if ( countrycode! == 'N')
+                    {
+                        
+                        Console.WriteLine("Please enter time on the call (in minutes): ");
+                        time1 = double.Parse(Console.ReadLine());
+                        Indonesia(ref time1);
+                        Console.WriteLine($"Total charge for N: RM {time1}");
+                    }
+                    else if (countrycode! == 'S')
+                    {
+
+                        Console.WriteLine("Please enter time on the call (in minutes): ");
+                        time2 = double.Parse(Console.ReadLine());
+                        Singapore(ref time2);
+                        Console.WriteLine($"Total charge for S: RM {time2}");
+                    }
+                    else
+                    {
+                    Console.WriteLine("Invalid country code. Please enter 'N' for indonesia or 'S' for Singapore");
+                    }
+
+
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine("Please enter the valid country code: 'N' for indonesia or 'S' for Singapore");
+                    Console.WriteLine(e.Message);
+                }
+
+
+        }
+        static void Indonesia(ref double N)
+        {
+            if (N > 0 && N <= 60)
+            {
+                N = 0.60 * N;
+            }
+            if (N > 60 && N <= 90)
+            {
+                N = 0.50 * N;
+            }
+            if (N > 90)
+            {
+                N = 0.40 * N;
+            }
+        }
+        static void Singapore(ref double S)
+        {
+            if (S > 0 && S <= 60)
+            {
+                S = 0.60 * S;
+            }
+            if (S > 60)
+            {
+                S = (0.60 * S) * 0.95;
+            }
+        }
+    }
